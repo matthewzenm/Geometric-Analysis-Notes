@@ -1,0 +1,181 @@
+\section{Maximum Principle}
+\writetocentry{section}{\the\sectcount.~Maximum Principle}
+In this section, we discuss the maximum principle for linear operator, weak and strong solutions.
+
+First we give the definition of ellipticity.
+Assume $\Omega\subset\mathbb{R}^n$ is a bounded domain, and
+$$Lu=a^{ij}(x)\nabla_i\nabla_ju+b^i(x)\nabla_iu+c(x)u,$$
+the $(x)$ in the coefficients indicates they only depend on $x$.
+Moreover, we assume $a^{ij}=a^{ji}$.
+Let $\lambda(x)$ and $\Lambda(x)$ be the smallest and greatest eigenvalue of $a^{ij}$ respectively.
+\medskip
+
+\advance\propcount by 1
+\noindent{\bf Definition~\propnumber.}
+We say the operator $L$ is
+\smallskip
+\item {(1)} {\it elliptic} if $\lambda(x)>0$;
+\item {(2)} {\it strictly elliptic} if $\lambda(x)\geq\lambda_0$ for some $\lambda_0>0$;
+\item {(3)} {\it uniformly elliptic} if $L$ is elliptic and $\lambda_1\leq{\Lambda(x)\over\lambda(x)}\leq\lambda_2$ for some $\lambda_1,\lambda_2>0$.
+\medskip
+
+In the following context, we shall assume that $a^{ij}(x)$, $b^i(x)$ and $c(x)$ are continuous on $\bar\Omega$, which implies $L$ is uniformly elliptic.
+
+Now we can discuss the weak maximum principle.
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+\definexref{thm:weakmax}{\propnumber}{thm}
+Assume $u\in C^2(\Omega)\cap C^0(\bar\Omega)$, $Lu\geq 0$, $L$ is uniformly elliptic and $c\equiv0$.
+Then
+$$\sup_{\Omega}u=\sup_{\partial\Omega}u.$$
+
+\demo
+Let's first assume that $Lu>0$.
+If $x_0\in\Omega^\circ$ is the maximal point of $u$, then we have
+$$\nabla u(x_0)=0,\ \nabla_i\nabla_ju(x_0)\leq 0.$$
+This implies $a^{ij}\nabla_i\nabla_ju(x_0)\leq 0$, which can imply that $Lu(x_0)\leq 0$, contradiction!
+
+To handle $Lu\geq 0$, we consider an auxilary function
+$$\tilde{u}(x)=u(x)+\varepsilon e^{Ax^1},$$
+where $x^1$ is the first component of $\bf x$, and $\varepsilon,A$ need to be determined.
+We compute the operation of $L$ on $\tilde{u}$:
+$$\eqalign{
+    L\tilde{u}(x)&=Lu(x)+\varepsilon L(e^{Ax^1})\cr
+    &=Lu(x)+\varepsilon(a^{11}(x)\nabla_1\nabla_1(e^{Ax^1})+b^1(x)\nabla_1(e^{Ax^1}))\cr
+    &=Lu(x)+\varepsilon(A^2e^{Ax^1}a^{11}(x)+b^1(x)Ae^{Ax^1})\cr
+    &=Lu(x)+\varepsilon Ae^{Ax^1}(Aa^{11}(x)+b^1(x)),
+}$$
+here $a^{11}(x)\geq c_0>0$ since $a^{ij}$ is positive definite, $b^1(x)\geq-c_1$.
+So choose $A$ so large that $Ac_0-c_1>0$, we have
+$$L\tilde{u}(x)\geq\varepsilon A(c_0A-c_1)>0,$$
+then by the first paragraph of this proof, we have $\sup_{\Omega}\tilde{u}(x)=\sup_{\partial\Omega}\tilde{u}(x)$.
+Let $\varepsilon\to 0$, we obtain $\sup_{\Omega}u(x)=\sup_{\partial\Omega}u(x)$.
+\enddemo
+
+\advance\propcount by 1
+\noindent {\it Remark}~\/\propnumber.
+If the condition is $Lu\leq 0$, then the conclusion is changed to $\inf_{\Omega}u=\inf_{\partial\Omega}u$.
+\medskip
+
+\advance\propcount by 1
+\proclaim Corollary~\propnumber.
+\definexref{cor:weakmax}{\propnumber}{cor}
+Assume $\Omega\subset\mathbb{R}^n$ is a bounded domain, $u\in C^2(\Omega)\cap C^0(\bar\Omega)$, $L$ is (uniformly) elliptic.
+If $Lu\geq 0$, $c\leq 0$, then
+$$\sup_{\Omega}u\leq\sup_{\partial\Omega}\max\{u,0\}.$$
+
+\demo
+Consider $\Omega^+\subset\Omega$ on which $u>0$, then
+$$L_0u=a^{ij}\nabla_i\nabla_ju+b^i\nabla_iu\geq-cu(x)\geq 0.$$
+Apply weak maximum principle (\ref{thm:weakmax}) then we obtain the conclusion.
+\enddemo
+
+\advance\propcount by 1
+\noindent {\it Remark}~\/\propnumber.
+If $Lu\leq 0$ and $c\leq 0$, then $\inf_{\Omega}u\geq\inf_{\partial\Omega}\min\{u,0\}$;
+If $Lu=0$, then $\sup_\Omega|u|=\sup_{\partial\Omega}|u|$.
+\medskip
+
+An application of weak maximum principle is uniqueness of solution, or comparison principle.
+
+\advance\propcount by 1
+\proclaim Proposition~\propnumber.
+\definexref{prop:comparison}{\propnumber}{prop}
+Let $L$ be elliptic on $\Omega$, $c\leq 0$, $u,v\in C^2(\Omega)\cap C^0(\bar\Omega)$.
+Then
+\smallskip
+\item {\rm(1)} If $Lu=Lv$ on $\Omega$ and $u=v$ on $\partial\Omega$, then $u\equiv v$ on $\Omega$;
+\item {\rm(2)} If $Lu\geq Lv$ on $\Omega$, $u\leq v$ on $\partial\Omega$, then $u\leq v$ on $\Omega$.
+
+These two statements are one-line corollaries of~\ref{thm:weakmax}~and~\ref{cor:weakmax}.
+
+Next we discuss the strong maximum principle.
+Simply speaking, strong maximum principle asserts that if $u$ attains its maximum at an interior point, then $u\equiv{\rm const}$.
+To develop the strong maximum principle, we first need the Hopf lemma.
+
+\advance\propcount by 1
+\proclaim Lemma~\propnumber.
+\definexref{lem:Hopf}{\propnumber}{lem}
+Let $L$ be uniformly elliptic, $Lu\geq 0$, $u\in C^2(\Omega)\cap C^1(\bar\Omega)$ and $x_0\in\partial\Omega$.
+We assume:
+\smallskip
+\item {\rm(1)} either $c=0$ or $c\leq 0$, $u(x_0)\geq 0$;
+\item {\rm(2)} at $x_0$, we can find $B(y,R)\subset\Omega$ such that $x_0\in\partial B(y,R)$;
+\item {\rm(3)} for all $x\in\Omega$, $u(x)<u(x_0)$,
+\smallskip
+\noindent then ${\partial u\over\partial{\bf n}}(x_0)>0$, where $\bf n$ is the outer normal vector.
+
+\demo
+Let $0<r<R$, consider the annulus
+$$A(r,R)=B(y,R)-B(y,r).$$
+Let $v(x)=e^{-A\rho^2}-e^{-AR^2}$, where $\rho=|x-y|>r$, then
+$$v(x)=\left\{\eqalign{
+    \geq 0&\ {\rm on}\ A(r,R),\cr
+    0&\ {\rm on}\ \partial B(y,R).
+}\right.$$
+Direct calculation gives
+$$\eqalign{
+    Lv(x)&=e^{-A\rho^2}(4A^2a^{ij}(x_i-y_i)(x_j-y_j)-2A(a^{ii}+b^i(x_i-y_i)))+cv(x)\cr
+    &\geq e^{-A\rho^2}(4A^2\lambda(x)\rho^2-2A(a^{ii}+|{\bf b}|\rho)+c),
+}$$
+where ${\bf b}=(b^1,\cdots,b^n)$.
+By uniformly ellipticity, $a^{ii}/\lambda$, $|{\bf b}|/\lambda$ and $c/\lambda$ are bounded, so we can choose $A$ so large that $Lv\geq 0$ on the annulus $A(r,R)$.
+Since $u(x)-u(x_0)<0$ on $\partial B(y,r)$, there is a constant $\varepsilon$ such that $u(x)-u(x_0)+\varepsilon v(x)\leq 0$ on $\partial B(y,r)$.
+This inequality also holds on $\partial B(y,R)$ since on which $v=0$.
+Hence we have $L(u(x)-u(x_0)+\varepsilon v(x))\geq -cu(x_0)\geq 0$ in $A(r,R)$, and $u(x)-u(x_0)+\varepsilon v(x)\leq 0$ on $\partial A(r,R)$.
+Then by~\ref{cor:weakmax}, this implies $u(x)-u(x_0)+\varepsilon v(x)\leq 0$ on whole $A(r,R)$.
+Taking the normal derivative at $x_0$, we obtain
+$${\partial u\over\partial{\bf n}}(x_0)\geq -\varepsilon{\partial v\over\partial{\bf n}}(x_0)=-\varepsilon v'(R)>0$$
+as required.
+\enddemo
+
+Now we can state the strong maximum principle.
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Let $L$ be uniformly elliptic, $u\in C^2(\Omega)\cap C^1(\bar\Omega)$, $Lu\geq 0$.
+Assume either $c=0$ or $c\leq 0$ and $c/\lambda$ is bounded, then if $u$ attains maximum at $x_0\in\Omega$, then $u\equiv{\rm const}$.
+
+\demo
+Suppose $u$ is not constant and attains maximum in an interior point.
+If $x_0\in\Omega$ is the maximum point, then we can find an interior ball $B(y,R)\subset\Omega$ such that $x_0\in B(y,R)$ and $u(x)<u(x_0)$ in $\Omega$.
+Then by Hopf lemma (\ref{lem:Hopf}), ${\partial u\over\partial{\bf n}}(x_0)>0$, contradict to $\nabla u(x_0)=0$.
+\enddemo
+
+\advance\propcount by 1
+\noindent {\it Remark}~\/\propnumber.
+The condition $Lu\geq 0$ often comes from some curvature condition.
+\medskip
+
+An important application of maximum principle is $C^0$-estimate.
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Let $\Omega\subset\mathbb{R}^n$ be a bounded domain, $Lu=f$, $L$ elliptic, $c\leq 0$ and $u\in C^2(\Omega)\cap C^0(\bar\Omega)$.
+Then there exists a constant $C$ depending on $\Omega$ and the coefficients of $L$, such that
+$$\sup_\Omega|u|\leq\sup_{\partial\Omega}|u|+C\sup_\Omega|f|,$$
+where $C=C(\mathop{\rm diam}(\Omega),L)$.
+
+\demo
+Without loss of generality we assume $\Omega$ lies in $\{{\bf x}\colon 0<x^1<d\}$ for some $d>0$.
+Let
+$$v(x)=\sup_{\partial\Omega}|u|+(e^{\alpha d}-e^{\alpha x^1})\sup_\Omega|f|,$$
+where $\alpha>0$.
+Thus for $\lambda\alpha^2+b^1\alpha\geq 1$, we have
+$$\eqalign{
+    Lv&=-(a^{11}\alpha^2+b^1\alpha)e^{\alpha x^1}\sup_\Omega|f|+cv(x)\cr
+    &\leq-(\lambda\alpha^2+b^1\alpha)e^{\alpha x^1}\sup_\Omega|f|\cr
+    &\leq-\sup_\Omega|f|\cr
+    &\leq f.
+}$$
+Moreover, $v\geq\sup_{\partial\Omega}|u|$, hence we have
+$$\left\{\eqalign{
+    Lv\leq f &\ {\rm in}\ \Omega\cr
+    v\geq u &\ {\rm on}\ \partial\Omega,
+}\right.$$
+then by comparison principle (\ref{prop:comparison}), we obtain $v\geq u$ in $\Omega$.
+Hence for $C\geq\sup_\Omega(e^{\alpha d}-e^{\alpha x^1})$, which only depends on $\mathop{\rm diam}(\Omega)$, we have $\sup_\Omega|u|\leq\sup_{\partial\Omega}|u|+C\sup_\Omega|f|$.
+\enddemo
+
+\endsection

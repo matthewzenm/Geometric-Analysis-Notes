@@ -58,15 +58,17 @@
 
 \vglue 8cm
 {\parskip=4pt\noindent\titlefont Notes on \par Advanced Methods in Geometric Analysis\par}
-\hrule depth2pt \vskip 4pt
+\vskip 2pt
+\hrule depth4pt \vskip 4pt
 \rightline{Last compile:~\today}
-\vskip 0pt plus 1 filll
+\vskip 0pt plus 1filll
 {
     \parskip=4pt
     \noindent\authorfont Yingying Zhang\par
     \noindent Notes taken by Mengchen Zeng\par
 }
-\hrule depth1pt
+\vskip 2pt
+\hrule depth2pt
 \nopagenumbers
 \vfill\eject
 
@@ -78,11 +80,15 @@
 \readtocfile
 \vfill\eject
 
-\
-\vfill\eject
-
 \pageno=1
 % \input lect1
 \input lect2
+
+\footline{\rm\hfill\folio\hfill}
+{\sectionfont Bibliography}
+\vskip\baselineskip
+\bibliographystyle{alpha}
+\bibliography{biblio}
+\endsection
 
 \bye

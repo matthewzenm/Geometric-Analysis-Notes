@@ -1,5 +1,6 @@
+% !TeX root = main.tex
 \section{Maximum Principle}
-\writetocentry{section}{\the\sectcount.~Maximum Principle}
+\writetocentry{section}{Maximum Principle}
 In this section, we discuss the maximum principle for linear operator, weak and strong solutions.
 
 First we give the definition of ellipticity.
@@ -177,5 +178,101 @@ $$\left\{\eqalign{
 then by comparison principle (\ref{prop:comparison}), we obtain $v\geq u$ in $\Omega$.
 Hence for $C\geq\sup_\Omega(e^{\alpha d}-e^{\alpha x^1})$, which only depends on $\mathop{\rm diam}(\Omega)$, we have $\sup_\Omega|u|\leq\sup_{\partial\Omega}|u|+C\sup_\Omega|f|$.
 \enddemo
+
+We also consider elliptic operator of divergence from
+$$Lu=\nabla_i(a^{ij}\nabla_ju),\eqdef{eq:divergence}$$
+ellipticity is defined as before, depending on the positivity of $a^{ij}$.
+\medskip
+
+\advance\propcount by 1
+\noindent{\bf Definition~\propnumber.}
+Let $\Omega\subset\mathbb{R}^n$ be a bounded domain, $L$ defined as~\eqref{eq:divergence}.
+We say $Lu=0$ ($\geq0,\leq0$) in the weak sense if for any $v\in C^1_0(\Omega)$ the equality
+$$\int_\Omega a^{ij}\nabla_ju\nabla_iv=0\ (\leq0,\geq0)$$
+holds.
+\medskip
+
+Now we discuss the weak maximum principle for weak solutions.
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+\definexref{thm:weakmax_weak}{\propnumber}{thm}
+Assume $a^{ij}(x)\in C^1(\Omega)$ and $u\in C^2(\Omega)$.
+If $Lu\geq 0$ in the weak sense, then
+$$\sup_\Omega u=\sup_{\partial\Omega}u.$$
+
+\demo
+Assume $\sup_\Omega u>\sup_{\Omega u}=u_0$.
+Let $x_0\in\Omega$ such that $u(x_0)>u_0$.
+Choose $\Omega^1\subset\subset\Omega$ and $c$ such that $u(x)-u(x_0)-c>0$ on $\Omega^1$ and $u(x)-u(x_0)-c=0$ on $\partial\Omega^1$.
+Let $\varphi(x)=u(x)-u(x_0)-c$ and
+$$v(x)=\left\{\eqalign{
+	\varphi(x)&\ {\rm in}\ \Omega^1,\cr
+	0&\ {\rm on}\ \Omega\setminus\Omega^1.
+}\right.$$
+By assumption $Lu\geq 0$, we have
+$$\eqalign{
+	0&\geq\int_\Omega a^{ij}\nabla_iu\nabla_jv\cr
+	&\geq\int_\Omega\lambda|\nabla v|^2.
+}$$
+Hence $\nabla v=0$, $c={\rm const}$ on $\Omega^1$.
+But $v=0$ on $\partial\Omega^1$, contradicts to $v=\varphi>0$ on $\Omega^1$.
+\enddemo
+
+We weaken the assumption of $C^\infty$-ness of coefficent and $u$.
+There are two cases.
+The first one is
+$$u\in W^{1,2}(\Omega)=\{f\in L^2(\Omega)\colon\int|\nabla f|^2<+\infty\}$$
+and assume
+$$Lu=\nabla_i(a^{ij}\nabla_ju+b^iu)+c^i\nabla_iu+du.$$
+Assume $L$ has bounded coefficient, that is,
+$$\sum|a^{ij}|^2\leq\Lambda$$
+and
+$${1\over\lambda^2}\left(\sum(|b^i|^2+|c^i|^2)\right)+{1\over\lambda}|d|^2\leq A.$$
+We say $u$ satisfies $Lu\geq 0$ in the weak sense if for all $v\in C^1_0(\Omega)$, we have
+$$\int(a^{ij}\nabla_ju+b^1u)\nabla_iv-(c^i\nabla_iu+du)v\leq 0.$$
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Under above assumption, $Lu\geq 0$ implies
+$$\sup_\Omega u\leq\sup_{\partial\Omega}u^+.$$
+
+\demo
+See~\cite[Theorem 8.1]{G-T}.
+\enddemo
+
+\advance\propcount by 1
+\noindent{\it Remark~\/\propnumber}.
+If $Lu=g+\nabla_if^i$ has weak solution $u\in W^{1,2}(\Omega)$, $g\in L^{q/2}(\Omega)$ and $f^i\in L^q(\Omega)$ provided $q>n$, then from the Moser iteration, we can obtain $L^\infty$-bound of $u$.
+\medskip
+
+The second case is $u\in W^{2,n}_{\rm loc}(\Omega)\cap C^0(\bar\Omega)$.
+Consider the equation $Lu=f$ for $Lu=a^{ij}\nabla_i\nabla_ju+b^i\nabla_iu+cu$, such $u$ is called a {\it strong solution}.
+Then we have the Alexander--Backerman--Pucci maximum principle.
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Let $Lu\geq f$, $L$ elliptic, $D=\det{a^{ij}}$ and $D^*=D^{1/n}$.
+Assume ${|b|\over D^*},{|f|\over D^*}\in L^n(\Omega)$, $c\leq 0$ in $\Omega$, $u\in W^{2,n}_{\rm loc}(\Omega)\cap C^0(\bar\Omega)$, then
+$$\sup_\Omega u\leq\sup_{\partial\Omega}u^++\tilde{C}\|f\|_{L^n}.$$
+
+\demo
+See~\cite[Theorem 9.1]{G-T}.
+\enddemo
+
+\advance\propcount by 1
+\noindent{\it Remark~\/\propnumber}.
+The ABP maximum principle has a geometric proof.
+It often applies to non-divergence type of elliptic PDEs like Monge--Amper\'e equations.
+\medskip
+
+Now we discuss some practical useful principle on manifolds.
+\smallskip
+\item {(1)} Let $(M,g)$ be a compact Riemannian manifold, $u\in C^2(M)$.
+If $x_0$ is the maximum point of $u$, then $\nabla u(x_0)=0$ and $e^\varphi\Delta e^{-\varphi}u(x_0)<0$.
+Hence we can estimate $\tilde{\Delta}u(x)$ from below to get
+$$\tilde{\Delta}u(x)\geq f(x,u,\nabla u).$$
+\item {(2)} Let $(M,g)$ be a noncompact complete Riemannian manifold.
+Then the Omori--Yau maximum principle tells that for $u^*=\sup u$, there exists a sequence of points $\{x_k\}$ such that
+$$u(x_k)>u^*-{1\over k}.\ |\nabla u|(x_k)<{1\over k}.\ \Delta u(x_k)<{1\over k}.$$
 
 \endsection

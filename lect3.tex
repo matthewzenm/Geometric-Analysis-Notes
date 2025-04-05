@@ -1,0 +1,231 @@
+% !TeX root = main.tex
+\section{Existence of Solutions}
+\writenumberedtocentry{chapter}{Existence of Solutions}{\the\sectcount}
+
+In this lecture, we discuss inverse function theorem on Banach spaces, Fredholm alternative on Hilbert spaces and Sobolev embedding.
+These utils enable us to discuss the existence of solutions.
+
+First we define the Frechet derivative.
+Let $B_1,B_2$ be two Banach spaces, $U_1\subset B_1,U_2\subset B_2$ are open subsets.
+\medskip
+
+\advance\propcount by 1
+\noindent{\bf Definition~\propnumber}.
+A map $F:B_1\to B_2$ is called {\it Frechet differentiable} at $u\in U_1$ if there exists a bounded linear mapping $L:B_1\to B_2$ such that
+$${\|F(u+h)-F(u)-Lh\|_{B_2}\over\|h\|_{B_1}}\to 0\ {\rm as}\ h\to 0\ {\rm in}\ B_1.$$
+The linear mapping $L=:\delta_uF$ is called the {\it Frechet derivative} of $F$ at $u$.
+We say $F$ is a $C^1$-map (continuously Frechet differentiable) at $u$ if the map $v\to\delta_vF$ is continuous at $u$.
+\medskip
+
+Now we state the inverse function theorem and implicit function theorem.
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+\definexref{thm:inverse}{\propnumber}{thm}
+Let $\Phi:U\to V$ be a $C^1$-map.
+Assume $\Phi(0)=0$, $\delta_u\Phi(0)$ is an isomorphism, then there exists an open neighborhood $U_0$ of $0$ and $V_0\subset B_2$ such that for all $v\in V_0$, $\Phi(u)=v$ is solvable for $u$.
+
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+\definexref{thm:implicit}{\propnumber}{thm}
+Let $B_1,B_2$ be Banach spaces, $W\subset B_1\times X$ be an open subset.
+On open subset $V\subset B_2$, $\Phi:W\to V$ is $C^1$, $\Phi(u_0,t_0)=0$, $u_0\in B_1$, $t_0\in X$.
+Assume the bounded linear operator $\delta_u\Phi(u_0,t_0)$ is invertible, then there exists a small neighborhood $V_0$ of $t_0$ such that $\Phi(u,t)=0$ is solvable for $u=u(t)$.
+
+\advance\propcount by 1
+\noindent{\it Remark~\propnumber}.
+Apply to PDE, consider $F(u)=v$, $F$ is $C^1$ between Banach spaces (e.g.\ $C^{0,\alpha},W^{k,p},L^p$) if the linearized operator $\delta_uF(u_0)$ is invertible.
+\medskip
+
+\advance\propcount by 1
+\noindent{\bf Example~\propnumber}.
+For an elliptic operator $F$, if $\delta F$ is uniformly elliptic, implicit function theorem implies $F(u)=v$ is locally solvable for ``weak solution'' in $W^{k,p}$ sense.
+Next, use the elliptic estimate (Schauder estimate or $L^p$-estimate) to boost up regularity to get regular enough solution.
+\medskip
+
+\demo
+Take $U=V$, assume $dF(0)={\rm id}$ (otherwise, consider $\tilde{F}=(dF^{-1})(0)F$).
+Let $F(u)=u+\eta(u)$, then
+$$F(u)=v\iff u=v-\eta(u).$$
+Let $G(u)=v-\eta(u)$, then the equation is equivalent to $G(u)=u$.
+Note $dF(u)=Iu+d\eta(u)$, hence $dF(0)=I+d\eta(0)$, so $d\eta(0)=0$.
+Also $d\eta$ is a bounded linear operator, hence there exists a $\delta>0$, such that for $\|u\|<\delta$, we have
+$$\|d\eta(u)-d\eta(0)\|<{1\over2}.$$
+Thus for $u_1,u_2$ with $\|u_i\|<\delta$, we have
+$$\|\eta(u_1)-\eta(u_2)\|\leq{1\over2}\|u_1-u_2\|.$$
+Now let $u_1=v$, $u_2=G(u_1)$,\dots,$u_n=G(u_{n-1})$,\dots
+We thus have
+$$\eqalign{
+	\|u_{n+1}-u_{m+1}\|&=\|G(u_n)-G(u_m)\|\cr
+	&\leq{1\over2}\|u_n-u_m\|\cr
+	&\leq\left({1\over2}\right)^{n-m-1}\|u_2-u_1\|,
+}$$
+hence $\{u_n\}$ is a Cauchy sequence.
+Therefore $\lim_{n\to\infty}u_n=u_\infty$ exists in Banach space, and $G(u_n)=u_{n+1}$ implies $G(u_\infty)=u_\infty$.
+\enddemo
+
+Next we discuss Arzela--Ascoli theorem.
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Let $X$ be a compact metric space, $\{f_k(x)\}$ be a sequence of functions such that
+\smallskip
+\item {(1)} $f_k(x)$ is uniformly bounded, i.e.\ there exists $M$ such that $\forall x\in X$, $\forall k\in\mathbb{N}$, we have $|f_k(x)|<M$;
+\item {(2)} $f_k(x)$ is uniformly equicontinuous, i.e.\ for any $\varepsilon>0$, there exists $\delta>0$, such that for $\|x-y\|<\delta$, $|f_k(x)-f_k(y)|<\varepsilon$ independent from $x$ and $k$.
+\smallskip
+Then there exists a subsequence $\{f_{k_j}\}$ such that $f_{k_j}${\raise .5ex\hbox{$\to$}}{\kern -1em\lower .5ex\hbox{$\to$}}$f$ in some compact subset of $X$.
+\medskip
+
+\advance\propcount by 1
+\noindent{\it Remark~\propnumber}.
+For PDE, $\{f_k\}\subset W^{k,p},L^p$ or $C^{0,\alpha}$.
+Then (1) requires checking the boundedness of Sobolev, H\"older norms, and (2) requires checking the boundedness of weak derivatives.
+\medskip
+
+Now we discuss Fredholm alternative.
+For simplicity, we only discuss Hilbert space version.
+\medskip
+
+\advance\propcount by 1
+\noindent{\bf Definition~\propnumber}.
+Let $V_1,V_2$ be normed linear spaces, $T:V_1\to V_2$ is called a {\it compact operator} if for any bounded sequence $\{u_k\}\subset V_1$, there exists a subsequence $\{u_{k_j}\}$ such that $\{Tu_{k_j}\}$ converges in $V_2$.
+\medskip
+
+Assume $H$ is a Hilbert space, $T:H\to H$ is a compact operator, then one can check that $T^*:H\to H$ is also a compact operator.
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+Assumption as above, we have
+\smallskip
+\item {(1)} The spectral of $T$ is discrete, i.e.\ $\Lambda=\{\lambda_i\in\mathbb{R}|\lambda_i\neq 0,Tx=\lambda_ix\}$ is discrete.
+Moreover, $\ker(\lambda_iI-T)$ and $\ker(\lambda_iI-T^*)$ are of finite dimensional.
+\item {(2)} If $\lambda\neq 0$, $\lambda\in\Lambda$, then
+$$(\lambda I-T)x=y\quad{\rm and}\quad(\lambda I-T^*)x=y$$
+have unique solutions $x$ for each $y$ and $(\lambda I-T)^{-1},(\lambda I-T^*)^{-1}$ exist and are bounded.
+\item {(3)} For $\lambda\in\Lambda$, $(\lambda I-T)x=y$ is solvable if and only if $y\perp\ker(\lambda I-T^*)$, $(\lambda I-T^*)x=y$ is solvable if and only if $y\perp\ker(\lambda I-T)$.
+
+\advance\propcount by 1
+\noindent{\it Remark~\propnumber}.
+We often use (Hodge) Laplacian $\Delta$ on a Riemannian manifold and $\Delta_{\bar\partial}$ on a complex manifold.
+\medskip
+
+\noindent{\bf Application}: Prescribed Gaussian curvature equation on a compact Riemannian surface.
+
+Assume $(\Sigma,ds_0^2)$ is a compact Riemannian surface, $K_0$ is the Gaussian curvature of $ds_0^2$.
+Let $ds^2=e^{2f}ds_0^2$ be the hyperbolic metric $K=-1$.
+Then $f$ satisfies
+$$\Delta f+e^{2f}=-K_0,\eqdef{eq:curv eq 1}$$
+where $\Delta$ is the Hodge Laplacian.
+We rewrite~\eqref{eq:curv eq 1}~as $\Delta f+e^{2f}-1=-K_0-1$.
+Let $F(f)=\Delta f+e^{2f}-1$, then $\delta F(\varphi)=(\Delta+2)\varphi$.
+Since all eigenvalues of $\Delta>0$, $\Delta+2$ is invertible.
+We apply iteration on
+$$(\Delta+2)f=(-K_0-1)+(1+2f-e^{2f}).\eqdef{eq:curv eq 2}$$
+Set
+$$\eqalign{
+	&f_1=(\Delta+2)^{-1}(-K_0-1)\cr
+	&f_2=f_1+(\Delta+2)^{-1}(1+2f_1-e^{2f_1})\cr
+	&\cdots\cr
+	&f_n=f_{n-1}+(\Delta+2)^{-1}(1+2f_{n-1}-e^{2f_{n-1}})\cr
+	&\cdots
+}$$
+We can check when $\|-K_0-1\|<\varepsilon$ ($\varepsilon=1/2$ will do) in some Sobolev norm, \eqref{eq:curv eq 2}~has unique solution $f$ for $\|f\|<\delta$.
+\enddemo
+
+\advance\propcount by 1
+\noindent{\bf Definition~\propnumber}.
+A bounded linear operator $T:H\to H$ is called {\it Fredholm} if
+\smallskip
+\item {(1)} Both $\ker(T),\mathop{\rm coker}(T)$ are of finite dimensional.
+\item {(2)} $\mathop{\rm im}(T)$ is closed.
+\item {(3)} $\mathop{\rm Index}(T)=\dim\ker(T)-\dim\mathop{\rm coker}(T)$.
+\medskip
+
+Now we review some aspects about Sobolev spaces.
+Let $\Omega\subset\mathbb{R}^n$ be a bounded domain, define {\it Sobolev space}
+$$W^{k,p}(\Omega):=\left\{f\in L^p(\Omega)\left|\int_\Omega|\nabla^if|^p<+\infty,\ i=1,\cdots,k\right.\right\}\subset L^p(\Omega).$$
+We define {\it Sobolev norm}
+$$\|f\|^p_{W^{k,p}(\Omega)}:=\sum_{|\alpha|\leq k}\int_\Omega|\nabla^\alpha f|^p.$$
+Define $W^{k,p}_0(\Omega)$ to be the completion of $C^k_0(\Omega)$ with respective to $W^{k,p}$-norm, whose elements should be understood as Cauchy sequences.
+
+Now we state the Sobolev embedding theorem.
+\advance\propcount by 1
+\proclaim Theorem~\propnumber.
+There are embeddings
+$$W^{k,p}_0(\Omega)\hookrightarrow\left\{\eqalign{
+	&W^{l,q}_0(\Omega)\ {\sl if}\ 1\leq q\leq p,0\leq l\leq k,l-{n\over q}<k-{n\over p}<l;\cr
+	&L^{np\over n-p}(\Omega)\ {\sl if}\ k-{n\over p}<0;\cr
+	&C^m(\bar{\Omega})\ {\sl if}\ 0\leq m\leq k-{n\over p};\cr
+	&C^{m,\alpha}(\bar{\Omega})\ {\sl if}\ 0<m+\alpha<k-{n\over p}.
+}\right.$$
+Moreover, all embeddings are compact.
+
+The following special cases are useful.
+\smallskip
+\item {(1)} When $k=1,p=2$, we have {\it Sobolev inequality} $W^{1,2}_0(\Omega)\hookrightarrow L^{2n\over n-2}(\Omega)$ for $n\geq 3$, or equivalently
+$$\|f\|_{2n\over n-2}\leq C(\Omega)\|\nabla f\|_2.$$
+\item {(2)} We have {\it Morrey's inequality}
+$$W^{1,p}_0(\Omega)\hookrightarrow\left\{\eqalign{
+	&L^{np\over n-p}(\Omega),\ n>p;\cr
+	&C^0(\Omega),\ p>n;\cr
+	&C^{0,\alpha},\ 0<\alpha<1-{n\over p}.
+}\right.$$
+\item {(3)} For $f\in W^{k,p}_0(\Omega)$ with $p>n$, we have $f\in C^{k-1}(\bar{\Omega})$.
+\item {(4)} For $f\in W^{k,p}_0(\Omega)$ with $pk>n$, we have $f\in C^p(\bar{\Omega})$.
+\medskip
+
+\noindent{\bf Basic Question}.
+In the embedding picture, why $k-{n\over p}$ appears?
+\medskip
+
+\noindent{\bf Philosophy}. Meaningful inequalities in geometry must be scaling invariant.
+\medskip
+
+\noindent{\bf Answer}. $k-{n\over p}$ comes from scaling argument.
+\smallskip
+\item {(1)} If $u\in C^{0,\alpha}(\Omega)$, then $|u(x)-u(y)|\leq C|x-y|^\alpha$ (H\"older).
+Without loss of generality we can assume $\Omega=B_1(0)$, $y=0$.
+Let $u_\lambda(x)=u(\lambda x)$, then
+$$|u_\lambda(x)-u_\lambda(y)|=|u(\lambda x)-u(\lambda y)|\leq C|\lambda|^\alpha|x|^\alpha,$$
+hence
+$${|u_\lambda(x)-u_\lambda(y)|\over|\lambda|^\alpha}\leq C|x|^\alpha.$$
+That is, H\"older function is of $C^{0,\alpha}$-regular.
+\item {(2)} Assume $u\in L^2(B_1(0))$.
+Let $u_\lambda(x)=u(\lambda x)$, then
+$$\eqalign{
+	\left(\int_{B_\lambda(0)}u_\lambda^2\right)^{1/2}&=\left(\int_{B_1(0)}u^2(\lambda x){d(\lambda x)\over\lambda^n}\right)^{1/2}\cr
+	&=\lambda^{-n/2}\|u_\lambda\|_{L^2(B_\lambda(0))}.
+}$$
+That is, as domain scales $\lambda$ yields to the $L^2$-function scales like $\lambda^{-n/2}$.
+Similarly, if $u\in L^p(B_1(0))$, $u$ is regular in the sense of $C^{-n/p}$.
+\item {(3)} Assume $\nabla u\in L^2(B_1(0))$.
+Let $u_\lambda(x)=u(\lambda x)$, then
+$$\eqalign{
+	\left(\int_{B_\lambda(0)}|\nabla u_\lambda|^2\right)^{1/2}&=\left(\int_{B_1(0)}{\lambda^2\over\lambda^n}|\nabla u(\lambda x)|^2d(\lambda x)\right)^{1/2}\cr
+	&=\lambda^{1-n/2}\|\nabla u\|_{L^2(B_\lambda(0))}.
+}$$
+Similarly, if $u\in W^{k,p}(B_1(0))$, then $u$ scales like $\lambda^{k-n/p}$.
+\medskip
+
+\noindent{\bf Summary}. The three types of functions have regularity:
+\smallskip
+\item {(1)} H\"older function is $C^{0,\alpha}$-regular;
+\item {(2)} $L^p$-function is $C^{-n/p}$-regular;
+\item {(3)} $W^{k,p}$-function is $C^{k-n/p}$-regular.
+\medskip
+
+Now it's times to understand the Sobolev embedding.
+$$W^{1,p}_0(\Omega)\hookrightarrow\left\{\eqalign{
+	&L^{np\over n-p}(\Omega),\ p<n;\cr
+	&C^{0,\alpha},\ 0<\alpha<1-{n\over p}.
+}\right.$$
+We have two situations:
+\smallskip
+\item {(1)} $p>n$, $u\in W^{1,p}_0(\Omega)$, then $u$ is $C^{1-n/p}$-regular at most;
+\item {(2)} $p<n$, $1-{n\over p}<0$, then we expect $u\in L^q(\Omega)$ for some $q$.
+Translate to inequality, we have 
+$$\|u\|_{L^q(\Omega)}\leq C\|\nabla u\|_{L^p(\Omega)}.$$
+By our ``philosophy'', the regularity on both sides of the inequality must equal.
+The left side is $C^{-n/q}$-regular, and the right side is $C^{1-n/p}$-regular.
+Thus
+$$-{n\over q}=1-{n\over p},$$
+we obtain $q={np\over n-p}$.
+
+\endsection

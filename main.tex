@@ -31,12 +31,13 @@
 \def\lemword{Lemma}
 \def\corword{Corollary}
 \def\remword{Remark}
+\def\tocchapterentry#1#2#3{{\bf Lecture #2. #1\hfill#3}\par}
 
 \def\section#1{
     \footline{\rm\hfill\folio\hfill}
     \propcount=0
     \advance\sectcount by 1
-    \noindent{\sectionfont Section~\the\sectcount.\ #1}
+    \noindent{\sectionfont Lecture~\the\sectcount.\ #1}
     \vskip\baselineskip
 }
 \def\endsection{
@@ -83,6 +84,7 @@
 \pageno=1
 % \input lect1
 \input lect2
+\input lect3
 
 \footline{\rm\hfill\folio\hfill}
 {\sectionfont Bibliography}
